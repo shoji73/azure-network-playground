@@ -23,7 +23,6 @@ var endpointSpoke02ClientSubnetName = 'spoke02ClientSubnet'
 var endpointSpoke01ApplicationServerSubnetName = 'spoke01ApplicationServerSubnet'
 var testConfigurationName = 'httpTest'
 var testVipConfigurationName = 'httpVipTest'
-var testDelayConfigurationName = 'httpDelayTest'
 
 var normalTestGroupName = 'normalTestGroup'
 var normalVipTestGroupName = 'normalVipTestGroup'
@@ -126,27 +125,6 @@ resource connectionMonitor 'Microsoft.Network/networkWatchers/connectionMonitors
         successThreshold: {
           checksFailedPercent: null
           roundTripTimeMs: null
-        }
-        httpConfiguration: {
-          port: 80
-          method: 'GET'
-          requestHeaders: [ {
-              name: 'Host'
-              value: 'httpbin.org'
-            } ]
-          validStatusCodeRanges: [
-            '200'
-          ]
-          preferHTTPS: false
-        }
-      }
-      {
-        name: testDelayConfigurationName
-        testFrequencySec: 30
-        protocol: 'HTTP'
-        successThreshold: {
-          checksFailedPercent: null
-          roundTripTimeMs: 15000
         }
         httpConfiguration: {
           port: 80
